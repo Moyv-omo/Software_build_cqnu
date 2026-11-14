@@ -22,7 +22,7 @@ using std::println;
 double grade(double midterm, double final, double hwAverage);
 double grade(double midterm, double final, const std::vector<double>& hw);
 double median(std::span<const double> vec);
-std::istream& read_hw(std::istream &is, std::vector<double>& hw);
+void read_hw(std::vector<double>& hw);
 
 int main() {
     println("This program calculates one stu's grade.");
@@ -39,7 +39,7 @@ int main() {
     }
     std::vector<double> homeworkScores;
 
-    read_hw(cin, homeworkScores);
+    read_hw(homeworkScores);
     if(!inputFile) {
         println("No homework scores read from file.");
     }//这个判空因为后面的read_hw1已经由异常处理了，好像没用
@@ -95,18 +95,18 @@ double median(std::span<const double> vec) {
     }
 }
 
-std::istream& read_hw(std::istream& is, std::vector<double>& hw) {
-    if (!is) {
-        print(std::cerr, "No homework grades to read.\n");
-        return is;
+//使用cin全局对象,对流进行错误检查
+void read_hw(std::vector<double>& hw) {
+    if (!cin) {
+        println(std::cerr, "No homework grades to read.");
+        return;
     }
-    for(double h ; cin >> h;) {
+    for(double h; cin >> h;) {
         hw.push_back(h);
     }
     if(cin.eof()) {
         cin.clear();
         std::clearerr(stdin);
     }
-    return is;
+    return;
 }
-
