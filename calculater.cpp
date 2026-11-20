@@ -10,21 +10,12 @@
 #include <numeric>
 #include <span>
 #include <string>
+#include "main.h"
 
-extern double grade(double midterm, double final, double hwAverage);
-extern double grade(double midterm, double final, const std::vector<double>& hw);
 extern double median(std::span<const double> vec);
 
-//grade函数重载
-double grade(double midterm, double final, double hwAverage) {
-    return 0.2 * midterm + 0.4 * final + 0.4 * hwAverage;
-}
-
-double grade(double midterm, double final, const std::vector<double>& hw) {
-    if (std::ssize(hw) == 0) {
-        throw std::domain_error("no homework grades");
-    }
-    return grade(midterm, final, median(hw));
+double cal(Grade student) {
+    return 0.2 * student.midterm + 0.4 * student.final + 0.4 * student.hwAverage;
 }
 
 //使用span重构中值函数,使用快速选择进行中值计算,时间复杂度为O(n)

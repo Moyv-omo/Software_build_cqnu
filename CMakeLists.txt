@@ -19,6 +19,8 @@ target_sources(stuGrades
         main.cpp
         reader.cpp
         calculater.cpp
+        printer.cpp
+        main.h
     PRIVATE FILE_SET modules TYPE CXX_MODULES BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
         FILES
 )

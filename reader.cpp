@@ -8,18 +8,17 @@
 #include <vector>
 #include <fstream>
 #include <print>
-#include <string>
+#include "main.h"
 
 //使用文件流输入的读作业函数
-void read_hw(std::string &name,double &midterm, double &final, double hwAverage, double finalGrade, std::vector<double>& hw, std::ifstream& inputFile) {
+void read_hw(Grade& student, std::ifstream& inputFile) {
     if (!inputFile) {
         println(std::cerr, "错误：无法打开输入文件。");
         return;
     }
-
-    inputFile >> name >> midterm >> final;
+    inputFile >> student.name >> student.midterm >> student.final;
     for(double h; inputFile >> h;) {
-        hw.push_back(h);
+        student.hw.push_back(h);
     }
     if(inputFile.eof()) {
         inputFile.clear();
