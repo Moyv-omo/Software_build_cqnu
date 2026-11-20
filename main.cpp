@@ -9,10 +9,19 @@
 #include <fstream>
 #include <span>
 #include <print>
-#include "main.h"
+#include <vector>
+#include <string>
 
 using std::println;
-
+struct Grade {
+    std::string name;
+    double midterm = 0;
+    double final = 0;
+    std::vector<double> hw;
+    double hwAverage = 0;
+    double finalGrade = 0;
+};
+using GradeList = std::vector<Grade>;
 extern double cal(Grade student);
 extern double median(std::span<const double> vec);
 extern void print_grade(Grade student);

@@ -10,9 +10,18 @@
 #include <numeric>
 #include <span>
 #include <string>
-#include "main.h"
 
 extern double median(std::span<const double> vec);
+
+struct Grade {
+    std::string name;
+    double midterm = 0;
+    double final = 0;
+    std::vector<double> hw;
+    double hwAverage = 0;
+    double finalGrade = 0;
+};
+using GradeList = std::vector<Grade>;
 
 double cal(Grade student) {
     return 0.2 * student.midterm + 0.4 * student.final + 0.4 * student.hwAverage;
