@@ -8,22 +8,54 @@
 #include <vector>
 #include <fstream>
 #include <print>
+#include <sstream>
 #include "main.h"
 
-//使用文件流输入的读作业函数
-void read_hw(Grade& student, std::ifstream& inputFile) {
+extern std::istream& operator>>(std::istream& is, Grade& student);
+
+std::ifstream& operator>>(std::ifstream& inputFile, GradeList& student) {
     if (!inputFile) {
-        println(std::cerr, "错误：无法打开输入文件。");
-        return;
+        throw std::runtime_error("无法打开输入文件");
     }
-    inputFile >> student.name >> student.midterm >> student.final;
-    for(double h; inputFile >> h;) {
-        student.hw.push_back(h);
+    std::string line;
+    std::istringstream iss;
+    while(std::getline(inputFile, line)) {
+        iss.str(line);
+        Grade s;
+        if(iss>>s){
+            student.push_back(s);
+        } else {
+            iss.clear();
+        }
     }
     if(inputFile.eof()) {
         inputFile.clear();
         //因为这里是文件流输入,所以好像不需要清除标准输入流的错误状态
         // std::clearerr(stdin);
     }
-    return;
+    return inputFile;
+}
+
+std::istream& operator>>(std::istream& is, Grade& student) {
+    if(is){
+        is >> student.name >> student.midterm >> student.final;
+    }
+    if(!is.eof()&&is.fail()){
+        throw std::runtime_error("输入错误于姓名、期中成绩或期末成绩");
+    }
+    if(is){
+        for(double h; is >> h;){
+            student.hw.push_back(h);
+        }
+        if(!is.eof()&&is.fail()){
+            throw std::runtime_error("输入错误于作业成绩");
+        }
+        if(is.eof()&&!student.hw.empty()){
+            is.clear();
+        }
+    }
+    if(!is){
+        std::println("错误：输入流错误");
+    }
+    return is;
 }

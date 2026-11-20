@@ -9,3 +9,5 @@ struct Grade{
     double hwAverage=0;
     double finalGrade=0;
 };
+
+using GradeList = std::vector<Grade>;
