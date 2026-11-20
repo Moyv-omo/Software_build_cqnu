@@ -23,14 +23,14 @@ extern void read_hw(std::string &name, double &midterm,
             std::ifstream& inputFile);
 
 int main() {
-    println("This program calculates one stu's grade.");
+    println("本程序用于计算一个学生的成绩");
     std::string name;
     double midterm=0, final=0;
 
-    println("stu's name, midterm score, final score and homework scores are read by file: grades.txt");
+    println("学生姓名、期中成绩、期末成绩和作业成绩从文件: grades.txt 中读取");
     std::ifstream inputFile("../stuGrades/grades.txt");
     if (!inputFile){
-        println(std::cerr, "grades.txt not found.");
+        println(std::cerr, "错误：无法找到文件 grades.txt。");
         return 1;
     }
     std::vector<double> homeworkScores;
@@ -38,7 +38,7 @@ int main() {
     read_hw(name, midterm, final, 0, 0, homeworkScores, inputFile);
     if(!inputFile);
     if(!inputFile) {
-        println("No homework scores read from file.");
+        println(std::cerr, "错误：无法从文件中读取作业成绩。");
     }//这个判空因为后面的read_hw1已经由异常处理了，好像没用
     println();
 
@@ -46,14 +46,14 @@ int main() {
         //在println外部计算中值和最终成绩能够避免副作用1.求值顺序确定 2.避免脏输出
         double hwAverage = median(homeworkScores);
         double finalGrade = grade(midterm, final, hwAverage);
-        println("{}, midterm: {}, final: {}, homework average: {}, final grade: {:.2f}",
+        println("{}, 期中成绩: {}, 期末成绩: {}, 作业中值: {}, 最终成绩: {:.2f}",
                 name,
                 midterm,
                 final,
                 hwAverage,
                 finalGrade);
     } catch (std::domain_error& e) {
-        println(std::cerr, "Error calculating grade: {}", e.what());
+        println(std::cerr, "错误：{}", e.what());
         return 1;
     }
 

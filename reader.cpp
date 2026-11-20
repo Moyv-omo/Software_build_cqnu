@@ -13,7 +13,7 @@
 //使用文件流输入的读作业函数
 void read_hw(std::string &name,double &midterm, double &final, double hwAverage, double finalGrade, std::vector<double>& hw, std::ifstream& inputFile) {
     if (!inputFile) {
-        println(std::cerr, "No homework grades to read.");
+        println(std::cerr, "错误：无法打开输入文件。");
         return;
     }
 
