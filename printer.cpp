@@ -12,7 +12,7 @@ struct Grade {
 };
 using GradeList = std::vector<Grade>;
 
-void print_grade(Grade student) {
+void print_grade(const Grade& student) {
     println("{}, 期中成绩: {}, 期末成绩: {}, 作业中值: {}, 最终成绩: {:.2f}",
             student.name,
             student.midterm,

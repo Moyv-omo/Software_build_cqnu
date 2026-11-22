@@ -22,7 +22,7 @@ using GradeList = std::vector<Grade>;
 
 extern std::istream& operator>>(std::istream& is, Grade& student);
 
-std::ifstream& operator>>(std::ifstream& inputFile, GradeList& student) {
+std::istream& operator>>(std::istream& inputFile, GradeList& student) {
     if (!inputFile) {
         throw std::runtime_error("无法打开输入文件");
     }
@@ -48,6 +48,7 @@ std::ifstream& operator>>(std::ifstream& inputFile, GradeList& student) {
 std::istream& operator>>(std::istream& is, Grade& student) {
     if(is){
         is >> student.name >> student.midterm >> student.final;
+        std::println("学生{}读取成功", student.name);
     }
     if(!is.eof()&&is.fail()){
         throw std::runtime_error("输入错误于姓名、期中成绩或期末成绩");

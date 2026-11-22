@@ -22,10 +22,10 @@ struct Grade {
     double finalGrade = 0;
 };
 using GradeList = std::vector<Grade>;
-extern double cal(Grade student);
+extern double cal(const Grade& student);
 extern double median(std::span<const double> vec);
-extern void print_grade(Grade student);
-extern std::ifstream& operator>>(std::ifstream& inputFile, GradeList& student);
+extern void print_grade(const Grade& student);
+extern std::istream& operator>>(std::istream& inputFile, GradeList& student);
 
 int main() {
     println("本程序用于计算多个学生的成绩");

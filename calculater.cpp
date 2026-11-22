@@ -23,7 +23,7 @@ struct Grade {
 };
 using GradeList = std::vector<Grade>;
 
-double cal(Grade student) {
+double cal(const Grade& student) {
     return 0.2 * student.midterm + 0.4 * student.final + 0.4 * student.hwAverage;
 }
 
