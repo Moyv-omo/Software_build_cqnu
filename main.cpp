@@ -6,11 +6,11 @@
 
 #include <iostream>
 #include <stdexcept>
-#include <fstream>
 #include <span>
 #include <print>
 #include <vector>
 #include <string>
+import median;
 
 using std::println;
 struct Grade {
@@ -23,7 +23,6 @@ struct Grade {
 };
 using GradeList = std::vector<Grade>;
 extern double cal(const Grade& student);
-extern double median(std::span<const double> vec);
 extern void print_grade(const Grade& student);
 extern std::istream& operator>>(std::istream& inputFile, GradeList& student);
 extern int read(std::string path, GradeList& student);

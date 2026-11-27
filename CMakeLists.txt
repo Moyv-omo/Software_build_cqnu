@@ -22,6 +22,7 @@ target_sources(stuGrades
         printer.cpp
     PRIVATE FILE_SET modules TYPE CXX_MODULES BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
         FILES
+        median.cppm
 )
 
 # Deployment settings
