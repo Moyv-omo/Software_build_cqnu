@@ -26,24 +26,13 @@ extern double cal(const Grade& student);
 extern double median(std::span<const double> vec);
 extern void print_grade(const Grade& student);
 extern std::istream& operator>>(std::istream& inputFile, GradeList& student);
+extern int read(std::string path, GradeList& student);
 
 int main() {
     println("本程序用于计算多个学生的成绩");
     GradeList student;
 
-    println("学生姓名、期中成绩、期末成绩和作业成绩从文件: grades.dat 中读取");
-    std::ifstream inputFile("../stuGrades/grades.dat");
-    if (!inputFile){
-        println(std::cerr, "错误：无法找到文件 grades.dat。");
-        return 1;
-    }
-    try{
-        inputFile >> student;
-    }
-    catch (std::runtime_error& e) {
-        println(std::cerr, "错误：{}", e.what());
-        return 1;
-    }
+    read("../grades.dat", student);
     
     println();
 

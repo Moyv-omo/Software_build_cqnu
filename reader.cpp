@@ -19,8 +19,24 @@ struct Grade {
     double finalGrade = 0;
 };
 using GradeList = std::vector<Grade>;
-
+std::istream& operator>>(std::istream& inputFile, GradeList& student);
 extern std::istream& operator>>(std::istream& is, Grade& student);
+
+int read(std::string path, GradeList& student) {
+    std::println("学生姓名、期中成绩、期末成绩和作业成绩从文件: grades.dat 中读取");
+    std::ifstream inputFile(path);
+    if (!inputFile){
+        println(std::cerr, "错误：无法找到文件 grades.dat。");
+        return 1;
+    }
+    try{
+        inputFile >> student;
+    }
+    catch (std::runtime_error& e) {
+        println(std::cerr, "错误：{}", e.what());
+        return 1;
+    }
+}
 
 std::istream& operator>>(std::istream& inputFile, GradeList& student) {
     if (!inputFile) {
