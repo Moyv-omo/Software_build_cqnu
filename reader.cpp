@@ -36,6 +36,7 @@ int read(std::string path, GradeList& student) {
         println(std::cerr, "错误：{}", e.what());
         return 1;
     }
+    return 0;
 }
 
 std::istream& operator>>(std::istream& inputFile, GradeList& student) {
