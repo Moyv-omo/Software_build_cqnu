@@ -1,28 +1,14 @@
-/// This program caclulate one stu's grades.
-// Created: fanzijun  2026-11-20 15:43:00
+export module cg.input;
 
-// SPDX-License-Identifier: AGPL-3.0-or-later
-// SPDX-FileCopyrightText: 2026 FreeTech <fanzijun@hotmail.com>
+import std;
+import cg.data;
 
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include <print>
-#include <sstream>
-
-struct Grade {
-    std::string name;
-    double midterm = 0;
-    double final = 0;
-    std::vector<double> hw;
-    double hwAverage = 0;
-    double finalGrade = 0;
-};
 using GradeList = std::vector<Grade>;
-std::istream& operator>>(std::istream& inputFile, GradeList& student);
+
+extern std::istream& operator>>(std::istream& inputFile, GradeList& student);
 extern std::istream& operator>>(std::istream& is, Grade& student);
 
-int read(std::string path, GradeList& student) {
+export int read(std::string path, GradeList& student) {
     std::println("学生姓名、期中成绩、期末成绩和作业成绩从文件: grades.dat 中读取");
     std::ifstream inputFile(path);
     if (!inputFile){

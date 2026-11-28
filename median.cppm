@@ -1,4 +1,4 @@
-export module median;
+export module cg.median;
 import std;
 
 //使用span重构中值函数,使用快速选择进行中值计算,时间复杂度为O(n)

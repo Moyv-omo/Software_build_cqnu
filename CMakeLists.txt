@@ -17,12 +17,13 @@ target_compile_features(stuGrades PRIVATE cxx_std_23)
 target_sources(stuGrades
     PRIVATE
         main.cpp
-        reader.cpp
-        calculater.cpp
-        printer.cpp
     PRIVATE FILE_SET modules TYPE CXX_MODULES BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}
         FILES
+        data.cppm
         median.cppm
+        reader.cppm
+        cal.cppm
+        printer.cppm
 )
 
 # Deployment settings

@@ -1,7 +1,8 @@
-#include <string>
-#include <vector>
+export module cg.data;
 
-struct Grade {
+import std;
+
+export struct Grade {
     std::string name;
     double midterm = 0;
     double final = 0;
@@ -9,4 +10,3 @@ struct Grade {
     double hwAverage = 0;
     double finalGrade = 0;
 };
-using GradeList = std::vector<Grade>;
